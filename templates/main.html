@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//api.filepicker.io/v0/filepicker.js"></script>
+    <link href="{{url_for('static', filename='bootstrap.css')}}" rel="stylesheet">
+    <title>Filelinker | Get a link to an online file</title>
+    <style>
+        .container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .row {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .btn-large.btn-jumbo {
+            font-size: 20px;
+            padding: 14px 24px;
+            border-radius: 6px;
+        }
+
+        #results {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Got some stuff online? Get a link:</h1>
+        </div>
+        <div class="row">
+            <button id="getLink" class="btn btn-large btn-primary btn-jumbo">Get Link</button>
+        </div>
+        <div class="row">
+            <div id="results">
+                <p><a id="url-result"></a></p>
+                <p><a id="email-result">Send via email</a></p>
+                <p><a id="tweet-result">Tweet</a></p>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <h2>How it works:</h2>
+            <p>Do you have stuff online? Me too! But whenever I wanted to share any of it, especially with people who weren't using the service, it was a pain. So I used <a href="www.filepicker.io">Filepicker.io</a> and made this service in 5 minutes and a single static page. Let me know if you have any questions at <a href="mailto:brettcvz@gmail.com">brettcvz@gmail.com</a>.
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+                filepicker.setKey('eVW6SzPPRlmrtiXQOGnX');
+                $("#getLink").click(function(){
+                    filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal':true}, function(url, metadata) {
+                        $("#url-result").attr("href", url).text(url);
+                        $("#email-result").attr("href", "mailto:?subject=A file for you: "+metadata.filename+"&body=You can grab it at "+url);
+                        $("#tweet-result").attr("href", "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+"&text=Look%20at%20my%20cool%20stuff:"+metadata.filename);
+                        $("#results").show();
+                    });
+                });
+        });
+
+    </script>
+</body>
