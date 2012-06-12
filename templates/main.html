@@ -27,6 +27,19 @@
             display: none;
         }
     </style>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27979492-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
 </head>
 <body>
     <div class="container">
@@ -48,6 +61,10 @@
             <h2>How it works:</h2>
             <p>Do you have stuff online? Me too! But whenever I wanted to share any of it, especially with people who weren't using the service, it was a pain. So I used <a href="www.filepicker.io">Filepicker.io</a> and made this service in 5 minutes and a single static page. Let me know if you have any questions at <a href="mailto:brettcvz@gmail.com">brettcvz@gmail.com</a>.
         </div>
+        <div class="row" style="text-align:left; width:80px; margin: auto">
+            <p><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></p>
+            <p><a name="fb_share" type="button" share_url="filelinker.herokuapp.com"></a></p>
+        </div>
     </div>
     <script type="text/javascript">
         $(function(){
@@ -56,11 +73,16 @@
                     filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal':true}, function(url, metadata) {
                         $("#url-result").attr("href", url).text(url);
                         $("#email-result").attr("href", "mailto:?subject=A file for you: "+metadata.filename+"&body=You can grab it at "+url);
-                        $("#tweet-result").attr("href", "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+"&text=Look%20at%20my%20cool%20stuff:"+metadata.filename);
+                        $("#tweet-result").attr("href", "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+"&text=Look%20at%20my%20cool%20stuff:%20"+metadata.filename);
                         $("#results").show();
                     });
                 });
         });
 
     </script>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+                type="text/javascript">
+            </script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </body>
