@@ -1,11 +1,11 @@
 import os
 
-from flask import Flask
-app = Flask(__name__)
+from flask import Flask, render_template
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
-def hello():
-    return 'Hello World!'
+def landing():
+    return render_template('main.html')
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
