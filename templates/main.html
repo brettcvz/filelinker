@@ -55,11 +55,10 @@
             <button id="getLink" class="btn btn-large btn-primary btn-jumbo">Get Link</button>
         </div>
         <div class="row">
-            <div id="results">
-                <p><a id="url-result"></a></p>
-                <p><a id="email-result">Send via email</a></p>
-                <p><a id="tweet-result">Tweet</a></p>
-                </table>
+            <div id="results" class='input-append'>
+                <input class='span6' id="url-result" type='text' value='' style='margin-bottom:0'>
+                <button class='btn' type='button' id="email-result">Send via email</button>
+                <button class='btn' type='button' id="tweet-result">Tweet</button>
             </div>
         </div>
         <div class="row">
@@ -76,7 +75,7 @@
                 filepicker.setKey('eVW6SzPPRlmrtiXQOGnX');
                 $("#getLink").click(function(){
                     filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal':true}, function(url, metadata) {
-                        $("#url-result").attr("href", url).text(url);
+                        $("#url-result").attr("value", url);
                         $("#email-result").attr("href", "mailto:?subject=A file for you: "+metadata.filename+"&body=You can grab it at "+url);
                         $("#tweet-result").attr("href", "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+"&text=Look%20at%20my%20cool%20stuff:%20"+metadata.filename);
 
