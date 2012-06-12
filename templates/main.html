@@ -26,6 +26,11 @@
         #results {
             display: none;
         }
+
+        #results img {
+            max-width: 30%;
+            max-height: 300px;
+        }
     </style>
     <script type="text/javascript">
 
@@ -74,6 +79,11 @@
                         $("#url-result").attr("href", url).text(url);
                         $("#email-result").attr("href", "mailto:?subject=A file for you: "+metadata.filename+"&body=You can grab it at "+url);
                         $("#tweet-result").attr("href", "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+"&text=Look%20at%20my%20cool%20stuff:%20"+metadata.filename);
+
+                        if (metadata.type.indexOf("image/") == 0) {
+                            var img = $("<img></img>").attr("src",url).attr("alt", metadata.filename).attr("title",metadata.filename);
+                            $("#results").append(img);
+                        }
                         $("#results").show();
                     });
                 });
